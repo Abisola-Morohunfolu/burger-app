@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Burger from '../../components/Burger/Burger';
-import Auxiliary from '../../hoc/Auxiliary';
+import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/orderSummary';
-import Backdrop from '../../components/UI/Backdrop/Backdrop';
 
 const INGREDIENTS_PRICES = {
 	salad: 0.5,
