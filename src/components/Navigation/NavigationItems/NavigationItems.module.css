@@ -9,5 +9,7 @@
 }
 
 @media (min-width: 500px) {
-	flex-direction: row;
+	.NavigationItems {
+		flex-direction: row;
+	}
 }
