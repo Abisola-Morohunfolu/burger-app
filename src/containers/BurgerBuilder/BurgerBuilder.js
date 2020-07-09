@@ -31,9 +31,10 @@ class BurgerBuilder extends Component {
 	}
 
 	purchaseHandler = () => {
-		if (this.state.isAuthenticated) {
+		if (this.props.isAuthenticated) {
 			this.setState({ purchasing: true });
 		} else {
+			this.props.onSetRedirectPath('/checkout');
 			this.props.history.push('/auth');
 		}
 	};
@@ -114,6 +115,7 @@ const mapDispatchToProps = (dispatch) => {
 		onRemoveIngredient: (ing) => dispatch(actions.removeIngredient(ing)),
 		onInitIngredients: () => dispatch(actions.initIngredients()),
 		onPurchaseInit: () => dispatch(actions.purchaseInit()),
+		onSetRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path)),
 	};
 };
 

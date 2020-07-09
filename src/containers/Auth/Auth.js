@@ -10,6 +10,12 @@ import * as authActions from '../../store/actions/index';
 import classes from './Auth.module.css';
 
 class Auth extends Component {
+	componentDidMount() {
+		if (!this.props.buildingBurger && this.props.authRedirectPath !== '/') {
+			this.props.onSetRedirectPath();
+		}
+	}
+
 	state = {
 		controls: {
 			email: {
@@ -118,7 +124,7 @@ class Auth extends Component {
 		//redirect after signup/login
 		let authRedirect = null;
 		if (this.props.isAuthenticated) {
-			authRedirect = <Redirect to="/" />;
+			authRedirect = <Redirect to={this.props.authRedirectPath} />;
 		}
 		return (
 			<div className={classes.AuthData}>
@@ -142,12 +148,15 @@ const mapStateToProps = (state) => {
 		loading: state.auth.loading,
 		error: state.auth.error,
 		isAuthenticated: state.auth.token !== null,
+		authRedirectPath: state.auth.authRedirectPath,
+		buildingBurger: state.burgerBuilder.building,
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onAuth: (email, password, isSignUp) => dispatch(authActions.auth(email, password, isSignUp)),
+		onSetRedirectPath: () => dispatch(authActions.setAuthRedirectPath('/')),
 	};
 };
 
